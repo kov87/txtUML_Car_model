@@ -1,0 +1,394 @@
+package car_diagram;
+
+
+class Car {
+	String name;
+	int serial_number;
+	String model;
+	int model_year;
+	String engine;
+	String color;
+	String Type;
+	String manufacturer;
+	String energy_source;
+	
+void start(){
+	
+}
+void stop(){
+	
+}
+
+	void change_gear(){
+		
+	}
+}
+
+class  Manufacturer {
+	
+	String name;
+	String model;
+	int Year;
+	
+	
+void manufacturer(){
+	
+}
+	
+}
+
+
+class Type {
+	String name;
+	String model;
+	String sport_car;
+	String family_car;
+	
+	
+	
+}
+
+signal EngineOn;
+signal EngineOff;
+class Engine {
+	
+	String engine_type;
+	int   displacement;
+	int  horse_power;
+	String energy_source;
+	
+	initial Init;
+	state Off;
+	state On;
+	
+	transition Initialize {
+		from Init;
+		to Off;
+	}
+
+	transition SwitchOn {
+		from Off;
+		to On;
+		trigger EngineOn;
+	}
+
+	transition SwitchOff {
+		from On;
+		to Off;
+		trigger EngineOff;
+		
+	}
+
+	
+	void start(){
+		
+	}
+	void stop (){
+		
+	}
+	
+	void change_gear(){
+		
+	}
+	
+	
+}
+
+
+class Engine_type extends Engine{
+
+	String piston;
+	String crankshaft;	
+}
+
+
+class Electric extends Engine_type{
+	
+	int remaining_hours;
+	int max_hours;
+	
+	void start(){
+		
+	}
+	
+	void stop(){
+		
+		
+	}
+	void change_gear(){
+		
+	}
+}
+
+
+class Fuel extends Engine_type {
+	String fuel_type;
+	int max_capacity;
+	int current_capacity;
+	
+	void start(){
+		
+	}
+	
+	void stop(){
+		
+	}
+	
+}
+
+
+
+
+
+class Wheels{
+	String tire_type;
+	int diam;
+	int width;
+		
+}
+
+
+class Sport_car extends Type{
+	String name;
+	int serial_number;
+	String model;
+	int model_year;
+	String engine;
+	String color;
+    String manufacturer;
+	String energy_source;
+	
+	
+	void start(){
+		
+	}
+	
+	void stop(){
+		
+		
+	}
+	void change_gear(){
+		
+	}
+	
+}
+
+class Family_car extends Type{
+	String name;
+	int serial_number;
+	String model;
+	int model_year;
+	String engine;
+	String color;
+    String manufacturer;
+	String energy_source;
+	
+	void start(){
+		
+	}
+	
+	void stop(){
+		
+		
+	}
+	void change_gear(){
+		
+	}
+	
+}
+
+class Luxury_car extends Type{
+	String name;
+	int serial_number;
+	String model;
+	int model_year;
+	String engine;
+	String color;
+    String manufacturer;
+	String energy_source;
+	
+	
+	void start(){
+		
+	}
+	
+	void stop(){
+		
+		
+	}
+	void change_gear(){
+		
+	}
+	
+	
+}
+
+class Model {
+	
+	String name;
+	int model_number;
+}
+
+
+class Car_owner {
+	String name ;
+	String family_name;
+	int age ;
+	String driving_licence_no ;
+	
+	
+}
+
+signal Going_Forward;
+signal Back_to_Neutral;
+signal Going_reverse;
+
+class Gear{
+	int gears;
+	int min_gear;
+	int max_gear;
+	
+	initial Init;
+	state Neutral;
+	state Forward;
+	state Reverse;
+	
+	
+	transition Init_to_Neutral{
+		from Init;
+		to Neutral;
+		
+}
+	
+	transition Neutral_to_Forward{
+		from  Neutral;
+		to Forward ;
+		trigger Going_Forward; 
+		
+	}
+	
+	transition Neutral_to_Reverse{
+		from Neutral;
+		to Reverse;
+		trigger Going_reverse;
+	}
+	
+	transition Forward_to_Neutral{
+		from Forward;
+		to Neutral;
+		trigger Back_to_Neutral;
+	}
+	
+	transition Reverse_to_Neutral{
+		from Reverse ;
+		to Neutral;
+		trigger Back_to_Neutral;
+	}
+	
+	
+	void change_forward(){
+	
+	}	
+	void change_backward(){
+	
+	}
+}
+
+
+class Manul_gear extends Gear{
+	int gears;
+	int min_gear;
+	int max_gear;
+	void change_forword(){
+	
+	}	
+	void change_backword(){
+	
+	}
+
+}
+
+
+
+class Auto_gear extends Gear{
+	int gears;
+	int min_gear;
+	int max_gear;
+	void change_forword(){
+	
+	}	
+	void change_backword(){
+	
+	}
+	
+	
+	
+}
+
+composition Carhaswheels{
+	
+	container Car car;
+	4 Wheels wheel;
+	
+}
+
+
+composition CarhasEngine{
+	
+	container Car car;
+	1 Engine engine;
+}
+
+
+composition CarhasGear{
+	container Car car;
+	1..2 Gear gear;
+}
+
+association CarhasModel{
+	
+	1..* Car car;
+	1 Model model;
+}
+
+
+association Car_manufacture{
+	
+	1..* Car car;
+	1 Manufacturer manufacturer;
+}
+
+association Car_Type{
+	
+	1..* Car car;
+	1 Type type;
+}
+
+
+association Carhasowner{
+	1 Car car;
+	1..0 Car_owner car_owner;
+	
+}
+
+
+
+
+association models{
+	1 Manufacturer manufacturer;
+	1..* Model model;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
